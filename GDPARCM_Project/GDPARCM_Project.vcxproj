@@ -173,6 +173,7 @@
     <ClCompile Include="SceneBGMovement.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="ThreadObject.cpp" />
     <ClCompile Include="TileIconObject.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +190,7 @@
     <ClInclude Include="SceneBGMovement.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="ThreadObject.h" />
     <ClInclude Include="TileIconObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
