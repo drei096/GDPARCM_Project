@@ -25,6 +25,7 @@ private:
 
 public:
     void loadTexture(std::string, std::string);
+    std::unordered_map<std::string, sf::Texture*> gettextureMap();
 
 public:
     int maxColumns = 28;

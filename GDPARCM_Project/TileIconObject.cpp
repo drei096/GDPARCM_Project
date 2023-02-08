@@ -13,13 +13,14 @@ TileIconObject::TileIconObject(std::string name, std::string tileID) : AGameObje
 
 void TileIconObject::initialize()
 {
-	ThreadObject::Sleep(200);
+	ThreadObject::Sleep(1000);
 
 	std::cout << "Declared as " << this->getName() << "\n";
 
 	//assign texture
 	sf::Sprite* sprite = new sf::Sprite();
-	sprite->setTexture(*TextureManager::getInstance()->getTexture(tileName));
+	if(TextureManager::getInstance()->getTexture(tileName) != nullptr)
+		sprite->setTexture(*TextureManager::getInstance()->getTexture(tileName));
 
 	
 

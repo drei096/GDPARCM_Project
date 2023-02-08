@@ -20,10 +20,14 @@ AssetLoaderThread::~AssetLoaderThread()
 
 void AssetLoaderThread::Run()
 {
-	//ThreadObject::Sleep(200);
+	ThreadObject::Sleep(200);
 
 	// LOAD TILE ICON
-	TextureManager::getInstance()->loadTexture(assetName, "Media/Streaming/" + assetName + ".png");
+	std::cout << "TILE NAME DEBUG: " << assetName << std::endl;
+
+	sf::Texture* texture = new sf::Texture();
+	texture->loadFromFile("Media/Streaming/" + assetName + ".png");
+	TextureManager::getInstance()->gettextureMap()[assetName] = texture;
 
 	this->executionEvent->OnFinishedExecution();
 

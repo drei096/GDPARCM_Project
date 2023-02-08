@@ -55,6 +55,11 @@ void TextureManager::loadTexture(std::string key, std::string path)
 	textureMap[key] = texture;
 }
 
+std::unordered_map<std::string, sf::Texture*> TextureManager::gettextureMap()
+{
+	return textureMap;
+}
+
 
 sf::Texture* TextureManager::getTexture(std::string key)
 {

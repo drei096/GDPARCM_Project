@@ -36,7 +36,6 @@ void IconLoader::update(sf::Time deltaTime)
 			AssetLoaderThread* assetLoaderThread = new AssetLoaderThread(idx3 + std::to_string(tileIdx), idx3 + std::to_string(tileIdx), this);
 			assetLoaderThread->ScheduleThreadForExecution();
 		}
-		tileIdx++;
 	}
 	
 }
@@ -72,7 +71,7 @@ void IconLoader::displayIcon()
 
 	GameObjectManager::getInstance()->addObject(temp);
 	tileIconList.push_back(temp);
-	
+	tileIdx++;
 	
 
 		
