@@ -55,6 +55,7 @@ void TextureManager::loadTexture(std::string key, std::string path)
 	textureMap[key] = texture;
 }
 
+
 sf::Texture* TextureManager::getTexture(std::string key)
 {
 	if (textureMap[key] != NULL) 

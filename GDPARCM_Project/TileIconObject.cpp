@@ -4,6 +4,7 @@
 #include "TextureManager.h"
 #include "Application.h"
 #include "Renderer.h"
+#include "ThreadObject.h"
 
 TileIconObject::TileIconObject(std::string name, std::string tileID) : AGameObject(name)
 {
@@ -12,11 +13,14 @@ TileIconObject::TileIconObject(std::string name, std::string tileID) : AGameObje
 
 void TileIconObject::initialize()
 {
+	ThreadObject::Sleep(200);
+
 	std::cout << "Declared as " << this->getName() << "\n";
 
 	//assign texture
 	sf::Sprite* sprite = new sf::Sprite();
 	sprite->setTexture(*TextureManager::getInstance()->getTexture(tileName));
+
 	
 
 	Renderer* renderer = new Renderer(tileName + "_renderer");

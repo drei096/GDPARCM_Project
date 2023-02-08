@@ -2,6 +2,8 @@
 #include <SFML/Graphics.hpp>;
 #include <unordered_map>
 
+class IExecutionEvent;
+
 class TextureManager
 {
 public:
@@ -19,7 +21,15 @@ private:
     TextureManager& operator=(TextureManager const&) {};
     static TextureManager* sharedInstance;
 
-    void loadTexture(std::string, std::string);
     std::unordered_map<std::string, sf::Texture*> textureMap;
+
+public:
+    void loadTexture(std::string, std::string);
+
+public:
+    int maxColumns = 28;
+    int maxRows = 22;
+    int columnGrid = 0;
+    int rowGrid = 0;
 };
 

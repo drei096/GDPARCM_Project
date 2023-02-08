@@ -2,7 +2,7 @@
 
 #include "GameObjectManager.h"
 #include "TileIconObject.h"
-
+#include "AssetLoaderThread.h"
 
 IconLoader::IconLoader() : AGameObject("IconDisplayer")
 {
@@ -15,17 +15,63 @@ void IconLoader::initialize()
 
 void IconLoader::update(sf::Time deltaTime)
 {
-	//AGameObject::update(deltaTime);
+	this->loadTicks += deltaTime.asMilliseconds();
 
-	loadTicks += deltaTime.asMilliseconds();
+	if(this->loadTicks > 1000.0f)
+	{
+		this->loadTicks = 0.0f;
 
-	createIconObjects(deltaTime, loadTicks);
+		if(tileIdx < 10)
+		{
+			AssetLoaderThread* assetLoaderThread = new AssetLoaderThread(idx1 + std::to_string(tileIdx), idx1 + std::to_string(tileIdx), this);
+			assetLoaderThread->ScheduleThreadForExecution();
+		}
+		else if(tileIdx < 100)
+		{
+			AssetLoaderThread* assetLoaderThread = new AssetLoaderThread(idx2 + std::to_string(tileIdx), idx2 + std::to_string(tileIdx), this);
+			assetLoaderThread->ScheduleThreadForExecution();
+		}
+		else
+		{
+			AssetLoaderThread* assetLoaderThread = new AssetLoaderThread(idx3 + std::to_string(tileIdx), idx3 + std::to_string(tileIdx), this);
+			assetLoaderThread->ScheduleThreadForExecution();
+		}
+		tileIdx++;
+	}
 	
+}
+
+void IconLoader::OnFinishedExecution()
+{
+	this->displayIcon();
 }
 
 void IconLoader::displayIcon()
 {
+	TileIconObject* temp = nullptr;
 
+	if (tileIdx < 10)
+		temp = new TileIconObject(idx1 + std::to_string(tileIdx), idx1 + std::to_string(tileIdx));
+	else if(tileIdx < 100)
+		temp = new TileIconObject(idx2 + std::to_string(tileIdx), idx2 + std::to_string(tileIdx));
+	else
+		temp = new TileIconObject(idx3 + std::to_string(tileIdx), idx3 + std::to_string(tileIdx));
+
+	int IMG_WIDTH = 68; int IMG_HEIGHT = 68;
+	float x = this->columnGrid * IMG_WIDTH;
+	float y = this->rowGrid * IMG_HEIGHT;
+	temp->setPosition(x, y);
+
+
+	this->columnGrid++;
+	if (this->columnGrid == this->maxColumns)
+	{
+		this->columnGrid = 0;
+		this->rowGrid++;
+	}
+
+	GameObjectManager::getInstance()->addObject(temp);
+	tileIconList.push_back(temp);
 	
 	
 

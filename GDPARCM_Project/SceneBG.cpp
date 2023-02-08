@@ -14,6 +14,8 @@ void SceneBG::initialize()
 
 	//assign texture
 	sf::Sprite* sprite = new sf::Sprite();
+	TextureManager::getInstance()->loadTexture("desert_bg", "Media/Textures/Desert.png");
+	TextureManager::getInstance()->getTexture("desert_bg")->setRepeated(true);
 	sprite->setTexture(*TextureManager::getInstance()->getTexture("desert_bg"));
 	sf::Vector2u textureSize = sprite->getTexture()->getSize();
 	//make BG height x k to emulate repeating BG.
