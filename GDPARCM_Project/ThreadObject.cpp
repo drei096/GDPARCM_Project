@@ -10,9 +10,9 @@ ThreadObject::~ThreadObject()
 
 void ThreadObject::ScheduleThreadForExecution()
 {
-	std::thread(&ThreadObject::Run, this).join();
+	//std::thread(&ThreadObject::Run, this).join();
 
-	//std::thread(&ThreadObject::Run, this).detach(); //detach thread for independent execution. without this, join() function must be called.
+	std::thread(&ThreadObject::Run, this).detach(); //detach thread for independent execution. without this, join() function must be called.
 }
 
 void ThreadObject::Sleep(int milliseconds)

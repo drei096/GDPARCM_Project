@@ -2,6 +2,7 @@
 #include <iostream>
 
 string SceneManager::NON_THREADED_SCENE_NAME = "NonThreadedScene";
+string SceneManager::THREADED_SCENE_1_NAME = "ThreadedScene_1";
 
 SceneManager* SceneManager::sharedInstance = NULL;
 

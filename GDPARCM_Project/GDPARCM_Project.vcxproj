@@ -163,6 +163,7 @@
     <ClCompile Include="AGameObject.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="AScene.cpp" />
+    <ClCompile Include="AssetLoaderThread.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="IconLoader.cpp" />
@@ -173,6 +174,7 @@
     <ClCompile Include="SceneBGMovement.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="ThreadedScene_1.cpp" />
     <ClCompile Include="ThreadObject.cpp" />
     <ClCompile Include="TileIconObject.cpp" />
   </ItemGroup>
@@ -181,6 +183,7 @@
     <ClInclude Include="AGameObject.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="AScene.h" />
+    <ClInclude Include="AssetLoaderThread.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="IconLoader.h" />
@@ -190,6 +193,7 @@
     <ClInclude Include="SceneBGMovement.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="ThreadedScene_1.h" />
     <ClInclude Include="ThreadObject.h" />
     <ClInclude Include="TileIconObject.h" />
   </ItemGroup>

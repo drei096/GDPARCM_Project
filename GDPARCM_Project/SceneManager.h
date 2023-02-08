@@ -9,6 +9,7 @@ class SceneManager
 public:
 	//scene names
 	static string NON_THREADED_SCENE_NAME;
+	static string THREADED_SCENE_1_NAME;
 
 	static SceneManager* getInstance();
 	void registerScene(AScene* scene);
