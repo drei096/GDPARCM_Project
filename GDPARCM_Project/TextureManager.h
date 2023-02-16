@@ -12,6 +12,9 @@ public:
 
     void loadAll();
     sf::Texture* getTexture(std::string);
+    sf::Texture* getFromTextureMap(const std::string assetName, int frameIndex);
+    sf::Texture* getStreamTextureFromList(const int index);
+
 private:
     // set constructor to private
     TextureManager() {};
@@ -21,11 +24,16 @@ private:
     TextureManager& operator=(TextureManager const&) {};
     static TextureManager* sharedInstance;
 
-    std::unordered_map<std::string, sf::Texture*> textureMap;
+
+    std::vector<sf::Texture*> base_textureList;
+    std::vector<sf::Texture*> stream_textureList;
+    std::unordered_map<std::string, std::vector<sf::Texture*>> textureMap;
+
+
 
 public:
-    void loadTexture(std::string, std::string);
-    std::unordered_map<std::string, sf::Texture*> gettextureMap();
+    void loadTexture(std::string, std::string, bool isStreaming);
+    void loadSingleStreamAsset(int index, IExecutionEvent* execution_event);
 
 public:
     int maxColumns = 28;

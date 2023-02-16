@@ -3,6 +3,7 @@
 #include "GameObjectManager.h"
 #include "TileIconObject.h"
 #include "AssetLoaderThread.h"
+#include "TextureManager.h"
 
 IconLoader::IconLoader() : AGameObject("IconDisplayer")
 {
@@ -17,25 +18,11 @@ void IconLoader::update(sf::Time deltaTime)
 {
 	this->loadTicks += deltaTime.asMilliseconds();
 
-	if(this->loadTicks > 1000.0f)
+	if(this->loadTicks > 300.0f)
 	{
 		this->loadTicks = 0.0f;
-
-		if(tileIdx < 10)
-		{
-			AssetLoaderThread* assetLoaderThread = new AssetLoaderThread(idx1 + std::to_string(tileIdx), idx1 + std::to_string(tileIdx), this);
-			assetLoaderThread->ScheduleThreadForExecution();
-		}
-		else if(tileIdx < 100)
-		{
-			AssetLoaderThread* assetLoaderThread = new AssetLoaderThread(idx2 + std::to_string(tileIdx), idx2 + std::to_string(tileIdx), this);
-			assetLoaderThread->ScheduleThreadForExecution();
-		}
-		else
-		{
-			AssetLoaderThread* assetLoaderThread = new AssetLoaderThread(idx3 + std::to_string(tileIdx), idx3 + std::to_string(tileIdx), this);
-			assetLoaderThread->ScheduleThreadForExecution();
-		}
+		TextureManager::getInstance()->loadSingleStreamAsset(this->tileIdx, this);
+		this->tileIdx++;
 	}
 	
 }
@@ -47,14 +34,9 @@ void IconLoader::OnFinishedExecution()
 
 void IconLoader::displayIcon()
 {
-	TileIconObject* temp = nullptr;
-
-	if (tileIdx < 10)
-		temp = new TileIconObject(idx1 + std::to_string(tileIdx), idx1 + std::to_string(tileIdx));
-	else if(tileIdx < 100)
-		temp = new TileIconObject(idx2 + std::to_string(tileIdx), idx2 + std::to_string(tileIdx));
-	else
-		temp = new TileIconObject(idx3 + std::to_string(tileIdx), idx3 + std::to_string(tileIdx));
+	std::string tileIconName = "Icon_" + std::to_string(this->tileIconList.size());
+	TileIconObject* temp = new TileIconObject(tileIconName, this->tileIconList.size());
+	tileIconList.push_back(temp);
 
 	int IMG_WIDTH = 68; int IMG_HEIGHT = 68;
 	float x = this->columnGrid * IMG_WIDTH;
@@ -70,8 +52,7 @@ void IconLoader::displayIcon()
 	}
 
 	GameObjectManager::getInstance()->addObject(temp);
-	tileIconList.push_back(temp);
-	tileIdx++;
+	
 	
 
 		
@@ -79,6 +60,7 @@ void IconLoader::displayIcon()
 
 void IconLoader::createIconObjects(sf::Time deltaTime, float loadTicks)
 {
+	/*
 	if(loadTicks > 200.0f)
 	{
 		if (tileIdx < 480)
@@ -161,6 +143,6 @@ void IconLoader::createIconObjects(sf::Time deltaTime, float loadTicks)
 			tileIdx++;
 		}
 	}
-
+	*/
 	
 }

@@ -22,9 +22,6 @@ private:
 	float loadTicks = 0.0f;
 	int tileIdx = 0;
 
-	std::string idx1 = "tile00";
-	std::string idx2 = "tile0";
-	std::string idx3 = "tile";
 
 private:
 	void displayIcon();

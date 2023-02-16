@@ -6,25 +6,33 @@
 #include "Renderer.h"
 #include "ThreadObject.h"
 
-TileIconObject::TileIconObject(std::string name, std::string tileID) : AGameObject(name)
+TileIconObject::TileIconObject(std::string name, int tileID) : AGameObject(name)
 {
-	tileName = tileID;
+	this->tileIndex = tileID;
 }
 
 void TileIconObject::initialize()
 {
-	ThreadObject::Sleep(1000);
-
 	std::cout << "Declared as " << this->getName() << "\n";
 
 	//assign texture
 	sf::Sprite* sprite = new sf::Sprite();
-	if(TextureManager::getInstance()->getTexture(tileName) != nullptr)
-		sprite->setTexture(*TextureManager::getInstance()->getTexture(tileName));
 
+	sf::Texture* texture = TextureManager::getInstance()->getStreamTextureFromList(this->tileIndex);
+	sprite->setTexture(*texture);
 	
 
 	Renderer* renderer = new Renderer(tileName + "_renderer");
 	renderer->assignDrawable(sprite);
 	this->attachComponent(renderer);
+}
+
+void TileIconObject::processInput(sf::Event evnet)
+{
+	
+}
+
+void TileIconObject::update(sf::Time deltaTime)
+{
+	
 }

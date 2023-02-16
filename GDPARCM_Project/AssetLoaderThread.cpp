@@ -4,13 +4,13 @@
 #include "IExecutionEvent.h"
 #include "TextureManager.h"
 #include "TileIconObject.h"
+#include "StringUtils.h"
 
 
 
-AssetLoaderThread::AssetLoaderThread(std::string name_assetToLoad, std::string id_assetToLoad, IExecutionEvent* execution_event)
+AssetLoaderThread::AssetLoaderThread(std::string path, IExecutionEvent* execution_event)
 {
-	assetName = name_assetToLoad;
-	assetID = id_assetToLoad;
+	asset_path = path;
 	executionEvent = execution_event;
 }
 
@@ -22,12 +22,10 @@ void AssetLoaderThread::Run()
 {
 	ThreadObject::Sleep(200);
 
-	// LOAD TILE ICON
-	std::cout << "TILE NAME DEBUG: " << assetName << std::endl;
-
-	sf::Texture* texture = new sf::Texture();
-	texture->loadFromFile("Media/Streaming/" + assetName + ".png");
-	TextureManager::getInstance()->gettextureMap()[assetName] = texture;
+	std::vector<std::string> tokens = StringUtils::split(asset_path, '/');
+	std::string assetName = StringUtils::split(tokens[tokens.size() - 1], '.')[0];
+	TextureManager::getInstance()->loadTexture(assetName, asset_path, true);
+	
 
 	this->executionEvent->OnFinishedExecution();
 

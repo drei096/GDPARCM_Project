@@ -8,7 +8,7 @@ class Application
 public:
     static const int WINDOW_WIDTH = 1920;
     static const int WINDOW_HEIGHT = 1080;
-    const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
+    static const sf::Time	TIME_PER_FRAME;
 
     Application();
     void run();

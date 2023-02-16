@@ -6,9 +6,14 @@
 #include "ThreadedScene_1.h"
 #include "TextureManager.h"
 
+const sf::Time Application::TIME_PER_FRAME = sf::seconds(1.f / 60.f);
+const float FRAME_RATE = 60.0f;
+
 Application::Application() :
 mWindow(sf::VideoMode(Application::WINDOW_WIDTH, Application::WINDOW_HEIGHT), "SFML Application")
 {
+    this->mWindow.setFramerateLimit(int(FRAME_RATE));
+
     font = new sf::Font();
     font->loadFromFile("Media/Sansation.ttf");
 
@@ -34,12 +39,14 @@ void Application::run()
     while (mWindow.isOpen()) 
     {
         processEvents();
-        timeSinceLastUpdate += clock.restart();
-        while (timeSinceLastUpdate > TimePerFrame) 
+        sf::Time elapsedTime = clock.restart();
+        timeSinceLastUpdate += elapsedTime;
+        //timeSinceLastUpdate += clock.restart();
+        while (timeSinceLastUpdate > TIME_PER_FRAME)
         {
-            timeSinceLastUpdate -= TimePerFrame;
+            timeSinceLastUpdate -= TIME_PER_FRAME;
             processEvents();
-            update(TimePerFrame);
+            update(elapsedTime);
         }
         render();
         SceneManager::getInstance()->checkLoadScene();
@@ -67,7 +74,11 @@ void Application::update(sf::Time deltaTime)
     GameObjectManager::getInstance()->update(deltaTime);
     SceneManager::getInstance()->checkLoadScene();
 
-    fpsCount->setString(to_string(floor(1.0f / deltaTime.asSeconds())));
+    float fps = floor(1.0f / deltaTime.asSeconds());
+    char str[40];
+    sprintf_s(str, "%.1f", fps);
+    std::string strfps = str;
+    fpsCount->setString(strfps);
 }
 
 void Application::render()

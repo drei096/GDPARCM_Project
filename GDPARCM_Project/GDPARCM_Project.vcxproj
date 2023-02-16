@@ -174,6 +174,7 @@
     <ClCompile Include="SceneBG.cpp" />
     <ClCompile Include="SceneBGMovement.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="StringUtils.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="ThreadedScene_1.cpp" />
     <ClCompile Include="ThreadObject.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="SceneBG.h" />
     <ClInclude Include="SceneBGMovement.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="StringUtils.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="ThreadedScene_1.h" />
     <ClInclude Include="ThreadObject.h" />
