@@ -18,7 +18,7 @@ void IconLoader::update(sf::Time deltaTime)
 {
 	this->loadTicks += deltaTime.asMilliseconds();
 
-	if(this->loadTicks > 300.0f)
+	if(this->loadTicks > 50.0f)
 	{
 		this->loadTicks = 0.0f;
 		TextureManager::getInstance()->loadSingleStreamAsset(this->tileIdx, this);

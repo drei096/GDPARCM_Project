@@ -7,7 +7,17 @@
 #include "AssetLoaderThread.h"
 
 
+
 TextureManager* TextureManager::sharedInstance = NULL;
+
+TextureManager::TextureManager()
+{
+	texManager_ThreadPool = new ThreadPool("texManagerThreadPool", 16);
+	if (texManager_ThreadPool)
+		std::cout << "Texmanagerthreadpool is created" << std::endl;
+
+	this->texManager_ThreadPool->StartScheduler();
+}
 
 TextureManager* TextureManager::getInstance()
 {
@@ -80,8 +90,8 @@ void TextureManager::loadSingleStreamAsset(int index, IExecutionEvent* execution
 		if(index == file_num)
 		{
 			std::string path = entry.path().generic_string();
-			AssetLoaderThread* asset_loader_thread = new AssetLoaderThread(path, execution_event);
-			asset_loader_thread->ScheduleThreadForExecution();
+			AssetLoaderThread* asset_loader_thread_action = new AssetLoaderThread(path, execution_event);
+			texManager_ThreadPool->ScheduleTask(asset_loader_thread_action);
 			break;
 		}
 		file_num++;
@@ -126,3 +136,5 @@ sf::Texture* TextureManager::getStreamTextureFromList(const int index)
 {
 	return this->stream_textureList[index];
 }
+
+

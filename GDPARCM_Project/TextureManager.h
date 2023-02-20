@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>;
 #include <unordered_map>
+#include "ThreadPool.h"
 
 class IExecutionEvent;
 
@@ -16,8 +17,11 @@ public:
     sf::Texture* getStreamTextureFromList(const int index);
 
 private:
+    ThreadPool* texManager_ThreadPool = nullptr;
+
+private:
     // set constructor to private
-    TextureManager() {};
+    TextureManager();
     // set copy contructor to private
     TextureManager(TextureManager const&) {};
     // assignment operator is private
@@ -29,6 +33,7 @@ private:
     std::vector<sf::Texture*> stream_textureList;
     std::unordered_map<std::string, std::vector<sf::Texture*>> textureMap;
 
+    
 
 
 public:

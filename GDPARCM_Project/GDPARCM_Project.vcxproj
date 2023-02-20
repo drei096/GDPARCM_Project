@@ -168,8 +168,11 @@
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="IconLoader.cpp" />
     <ClCompile Include="IExecutionEvent.cpp" />
+    <ClCompile Include="IFinishedTask.cpp" />
+    <ClCompile Include="IWorkerAction.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NonThreadedScene.cpp" />
+    <ClCompile Include="PoolWorkerThread.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SceneBG.cpp" />
     <ClCompile Include="SceneBGMovement.cpp" />
@@ -178,6 +181,7 @@
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="ThreadedScene_1.cpp" />
     <ClCompile Include="ThreadObject.cpp" />
+    <ClCompile Include="ThreadPool.cpp" />
     <ClCompile Include="TileIconObject.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -190,7 +194,10 @@
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="IconLoader.h" />
     <ClInclude Include="IExecutionEvent.h" />
+    <ClInclude Include="IFinishedTask.h" />
+    <ClInclude Include="IWorkerAction.h" />
     <ClInclude Include="NonThreadedScene.h" />
+    <ClInclude Include="PoolWorkerThread.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="SceneBG.h" />
     <ClInclude Include="SceneBGMovement.h" />
@@ -199,6 +206,7 @@
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="ThreadedScene_1.h" />
     <ClInclude Include="ThreadObject.h" />
+    <ClInclude Include="ThreadPool.h" />
     <ClInclude Include="TileIconObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
