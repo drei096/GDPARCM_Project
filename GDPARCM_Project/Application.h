@@ -6,8 +6,8 @@
 class Application
 {
 public:
-    static const int WINDOW_WIDTH = 1920;
-    static const int WINDOW_HEIGHT = 1080;
+    static const int WINDOW_WIDTH = 1280;
+    static const int WINDOW_HEIGHT = 720;
     static const sf::Time	TIME_PER_FRAME;
 
     Application();
