@@ -1,6 +1,5 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Entity.h"
 #include <vector>
 
 class Application
@@ -20,7 +19,6 @@ private:
 
 private:
     sf::RenderWindow mWindow;
-    std::vector<Entity*> entityList;
     sf::Font* font;
     sf::Text* fpsText;
     sf::Text* fpsCount;
